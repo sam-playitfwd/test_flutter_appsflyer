@@ -106,32 +106,35 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Appsflyer Init Result:',
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              appsflyerInit,
-              style: const TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              installConversionData, // Display install conversion data here
-              style: const TextStyle(fontSize: 16),
-            ),
-            Text(
-              onAppOpenAttribution, // Display install conversion data here
-              style: const TextStyle(fontSize: 16),
-            ),
-            Text(
-              onDeepLinking, // Display install conversion data here
-              style: const TextStyle(fontSize: 16),
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Appsflyer Init Result:',
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                appsflyerInit,
+                style: const TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                installConversionData, // Display install conversion data here
+                style: const TextStyle(fontSize: 16),
+              ),
+              Text(
+                onAppOpenAttribution, // Display install conversion data here
+                style: const TextStyle(fontSize: 16),
+              ),
+              Text(
+                onDeepLinking, // Display install conversion data here
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
         ),
       ),
     );
