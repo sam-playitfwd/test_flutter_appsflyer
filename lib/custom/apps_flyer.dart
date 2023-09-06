@@ -1,6 +1,7 @@
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 
-Future initAppsflyer() async {
+Future<String> initAppsflyer() async {
+  final StringBuffer logBuffer = StringBuffer();
   AppsflyerSdk appsflyerSdk;
   try {
     final AppsFlyerOptions options = AppsFlyerOptions(
@@ -11,16 +12,21 @@ Future initAppsflyer() async {
     appsflyerSdk = AppsflyerSdk(options);
 
     appsflyerSdk.onAppOpenAttribution((res) {
+      logBuffer.writeln('onAppOpenAttribution ${res.toString()}');
       //ignore:avoid_print
       print('onAppOpenAttribution ${res.toString()}');
     });
 
     appsflyerSdk.onInstallConversionData((res) {
+      logBuffer.writeln('onInstallConversionData ${res.toString()}');
       //ignore:avoid_print
       print('onInstallConversionData ${res.toString()}');
     });
 
     appsflyerSdk.onDeepLinking((DeepLinkResult dp) {
+      logBuffer.writeln('DP Status ${dp.status.toString()}');
+      logBuffer.writeln('DP Link ${dp.deepLink?.toString()}');
+      logBuffer.writeln('DP Value ${dp.deepLink?.deepLinkValue}');
       //ignore:avoid_print
       print(dp.status.toString());
       //ignore:avoid_print
@@ -61,8 +67,10 @@ Future initAppsflyer() async {
         registerConversionDataCallback: true,
         registerOnAppOpenAttributionCallback: true,
         registerOnDeepLinkingCallback: true);
+    return logBuffer.toString();
   } catch (e) {
     //ignore:avoid_print
     print('error occured ${e.toString()}');
+    return "error";
   }
 }
