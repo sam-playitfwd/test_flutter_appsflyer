@@ -47,9 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
       final AppsFlyerOptions options = AppsFlyerOptions(
         afDevKey: "7VmuGPyWcLJzHqASnx5PF",
         appId: "7VmuGPyWcLJzHqASnx5PF",
-        showDebug: true,
+        showDebug: false,
         timeToWaitForATTUserAuthorization: 15,
       );
+
       appsflyerSdk = AppsflyerSdk(options);
 
       appsflyerSdk.onInstallConversionData((res) {
@@ -80,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
           // Update the installConversionData with the received data
           onDeepLinking =
-              'onDeepLinking: ${dp.status.toString()} ${dp.deepLink?.toString()} ${dp.deepLink?.deepLinkValue.toString()}';
+              'DeepLink Status: ${dp.status.toString()} DeepLink: ${dp.deepLink?.toString()} Deeplink Value: ${dp.deepLink?.deepLinkValue.toString()}';
         });
       });
 
@@ -103,40 +104,44 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Appsflyer Init Result:',
-                style: TextStyle(fontSize: 20),
-              ),
-              Text(
-                appsflyerInit,
-                style: const TextStyle(fontSize: 24),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                installConversionData, // Display install conversion data here
-                style: const TextStyle(fontSize: 16),
-              ),
-              Text(
-                onAppOpenAttribution, // Display install conversion data here
-                style: const TextStyle(fontSize: 16),
-              ),
-              Text(
-                onDeepLinking, // Display install conversion data here
-                style: const TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-    );
+        body: SafeArea(
+          child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        'Appsflyer Init Result:',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SelectableText(
+                        appsflyerInit,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                      const SizedBox(height: 20),
+                      SelectableText(
+                        installConversionData, // Display install conversion data here
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 20),
+                      SelectableText(
+                        onAppOpenAttribution, // Display install conversion data here
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 20),
+                      SelectableText(
+                        onDeepLinking, // Display install conversion data here
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              )),
+        ));
   }
 }
