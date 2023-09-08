@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       "{af_content_id: id123, af_currency: USD, af_revenue: 1,}";
   String eventName = "";
   String eventValueString = "";
+  final TextEditingController _eventNameController = TextEditingController();
 
   @override
   void initState() {
@@ -221,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           TextField(
-                            controller: TextEditingController(text: eventName),
+                            controller: _eventNameController,
                             onChanged: onChangeEvent,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
